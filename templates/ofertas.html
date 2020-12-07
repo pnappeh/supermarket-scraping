@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ofertas
+{% endblock %}
+{% block main %}
+    <!--Main layout-->
+    <main class="mt-5 pt-5">
+        <div class="container">
+            <h1>Todas las ofertas</h1>
+            <h4>{{ count }} productos</h4>
+            <hr class="my-5">
+
+            <!--Section: Cards-->
+            <section class="text-center">
+
+                <!--Grid row-->
+                <div class="row mb-4 wow fadeIn">
+                    <!--Grid column-->
+                    {% for row in data_to_show %}
+                        <!--{% if loop.index >= 1 and loop.index < 22 %} -->
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card wow fadeIn overlay" >
+
+                            <!--Card image-->
+                            <div class="view overlay align-self-center"style="width: 150px; height: 150px">
+                                <img src="{{ row['image'] }}" class="card-img-top" alt="Imagen Producto" style="width:150 px; height: 150px;">
+                                <a href="https://www.jumbo.cl/pisco-alto-del-carmen-1-l-35/p" target="_blank">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">{{ row['name'] }}</h4>
+                                <!--Text-->
+                                <p class="card-text">{{ row['brand'] }}</p>
+                                <!--Supermercado Icon-->
+                                {% if row['supermercado'] == 'LIDER' %}
+                                    <span class="badge badge-pill primary-color">LIDER</span>
+                                {% endif %}
+                                {% if row['supermercado'] == 'JUMBO' %}
+                                    <span class="badge badge-pill success-color-dark">JUMBO</span>
+                                {% endif %}
+                                <p class="card-text">
+                                    <strong>${{ row['price'] }}</strong>
+                                    {% if row['price_discount'] != None %}
+                                        <s>${{ row['price_discount'] }}</s>
+                                    {% endif %}
+                                </p>
+                                <a href="https://{{ row['link'] }}" target="_blank" class="btn btn-mdb-color btn-md">
+                                    Comprar
+                                    <i class="fas fa-play ml-2"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--{% endif %}-->
+
+                    {% endfor %}
+                    </div>
+                    <!--Grid column-->
+                <!--Pagination-->
+                <nav class="d-flex justify-content-center wow fadeIn">
+                    {{ macros.pagination_widget(pages, 'ofertas') }}
+                </nav>
+                <!--Pagination-->
+            </section>
+            <!--Section: Cards-->
+
+        </div>
+    </main>
+    <!--Main layout-->
+{% endblock %}
