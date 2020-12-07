@@ -1,4 +1,4 @@
-# supermarket-scraping
+# Supermarket Scraping Project
 This project helps people to shop for certain product faster, because it scapes products from supermarkets, puts them in a database and then displays it through a flask web app.
 From every product being scraped, it stores the supermarket from where it came from, name, prices and discounts, image, link and quantity.
 It uses Selenium and BeautifulSoup libraries for the scraping part, which makes the process really slow, but it can load all the javascript within webpages, which is necessary, otherwise we couldn't get the data.
